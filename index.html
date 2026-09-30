@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота 4</title>
+</head>
+<body>
+    <script>
+        // Завдання 1. Перший символ у верхньому регістрі
+        function ucFirst(str) {
+            const characters = Array.from(str);
+            if (characters.length === 0) {
+                return str;
+            }
+
+            characters[0] = characters[0].toUpperCase();
+            return characters.join("");
+        }
+
+        console.log('ucFirst("василь") =', ucFirst("василь"));
+
+        // Завдання 2. Перевірка на спам
+        function checkSpam(str) {
+            const normalized = str.toLowerCase();
+            return normalized.includes("росі") || normalized.includes("xxx");
+        }
+
+        console.log('checkSpam("поїхати до росії") =', checkSpam("поїхати до росії"));
+        console.log('checkSpam("free XXXXX") =', checkSpam("free XXXXX"));
+        console.log('checkSpam("innocent rabbit") =', checkSpam("innocent rabbit"));
+
+        // Завдання 3. Обрізання тексту
+        function truncate(str, maxLength) {
+            const characters = Array.from(str);
+            if (characters.length <= maxLength) {
+                return str;
+            }
+
+            if (maxLength <= 3) {
+                return ".".repeat(Math.max(0, maxLength));
+            }
+
+            return characters.slice(0, maxLength - 3).join("") + "...";
+        }
+
+        console.log(
+            'truncate("Що я хотів би розповісти на цю тему:", 20) =',
+            truncate("Що я хотів би розповісти на цю тему:", 20)
+        );
+        console.log('truncate("Всім привіт!", 20) =', truncate("Всім привіт!", 20));
+
+        // Завдання 4. Перенесення на інший рядок
+        function strikeStr(str) {
+            const words = str.trim().split(/\s+/);
+            if (words.length === 1 && words[0] === "") {
+                return "";
+            }
+
+            const lines = [];
+            for (let index = 0; index < words.length; index += 3) {
+                lines.push(words.slice(index, index + 3).join(" "));
+            }
+
+            return lines.join("\n");
+        }
+
+        console.log(
+            'strikeStr("Що я хотів би розповісти на цю тему:") =\n' +
+            strikeStr("Що я хотів би розповісти на цю тему:")
+        );
+    </script>
+</body>
+</html>
